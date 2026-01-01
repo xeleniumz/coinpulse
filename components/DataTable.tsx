@@ -6,11 +6,11 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"
-import { cn } from "@/lib/utils"
-import { DataTableProps } from '@/type'
+} from "@/components/ui/table";
+import { cn } from "@/lib/utils";
+import { DataTableProps } from "@/type";
 
-import React from 'react'
+import React from "react";
 
 const DataTable = <T,>({
   columns,
@@ -23,28 +23,34 @@ const DataTable = <T,>({
   headerClassName,
 }: DataTableProps<T>) => {
   return (
-    <Table className={cn('custom-scrollbar',tableClassName)}>
+    <Table className={cn("custom-scrollbar", tableClassName)}>
       <TableCaption>A list of your recent invoices.</TableCaption>
       <TableHeader className={headerClassName}>
-        <TableRow className={cn('hover:bg-transparent!',headerRowClassName)}>
-         {columns.map((column, i) => (
-          <TableHead key={i} className={cn(('bg-dark-400 text-purple-100 first:pl-5 last:pr-5'))}>
-            {column.header}
-          </TableHead>  
-         ))}
+        <TableRow className={cn("hover:bg-transparent!", headerRowClassName)}>
+          {columns.map((column, i) => (
+            <TableHead
+              key={i}
+              className={cn("bg-dark-400 text-purple-100 first:pl-5 last:pr-5")}
+            >
+              {column.header}
+            </TableHead>
+          ))}
         </TableRow>
       </TableHeader>
       <TableBody>
         {data.map((row, rowIndex) => (
-          <TableRow key={rowKey(row, rowIndex)}
-            className={
-              cn('overflow-hidden rounded-lg border-b border-purple-100/5 hover:bg-dark-400/30! relative',
-              bodyRowClassName)}
+          <TableRow
+            key={rowKey(row, rowIndex)}
+            className={cn(
+              "overflow-hidden rounded-lg border-b border-purple-100/5 hover:bg-dark-400/30! relative",
+              bodyRowClassName
+            )}
           >
             {columns.map((column, columnIndex) => (
-              <TableCell key={columnIndex}
-                className={cn(('py-4first:pl-5 last:pr-5'),
-                  bodyCellClassName)}>
+              <TableCell
+                key={columnIndex}
+                className={cn("py-4first:pl-5 last:pr-5", bodyCellClassName)}
+              >
                 {column.cell(row, rowIndex)}
               </TableCell>
             ))}
@@ -52,7 +58,7 @@ const DataTable = <T,>({
         ))}
       </TableBody>
     </Table>
-  )
-} 
+  );
+};
 
 export default DataTable;

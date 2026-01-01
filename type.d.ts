@@ -180,7 +180,7 @@ interface WebSocketMessage {
   identifier?: string;
 }
 
-interface CoinDetailsData {
+export interface CoinDetailsData {
   id: string;
   name: string;
   symbol: string;
@@ -311,11 +311,11 @@ interface SearchItemProps {
   isActiveName: boolean;
 }
 
-interface CoinGeckoErrorBody {
+export interface CoinGeckoErrorBody {
   error?: string;
 }
 
-type QueryParams = Record<string, string | number | boolean | undefined>;
+export type QueryParams = Record<string, string | number | boolean | undefined>;
 
 interface PoolData {
   id: string;
