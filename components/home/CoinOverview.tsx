@@ -16,7 +16,6 @@ const CoinOverview = async () => {
       await fetcher<OHLCData[]>("/coins/bitcoin/ohlc", {
         vs_currency: "usd",
         days: 1,
-        interval: "hourly",
         precision: "full",
       }),
     ]);
@@ -28,7 +27,7 @@ const CoinOverview = async () => {
   }
   return (
     <div id="coin-overview">
-      <CandleStickChart />
+      {/* <CandleStickChart /> */}
       <div className="header pt-2">
         <Image
           src={coin.image.large}
