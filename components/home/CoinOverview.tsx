@@ -1,21 +1,34 @@
 import { fetcher } from "@/lib/coingecko.actions";
 import { formatCurrency } from "@/lib/utils";
-import { CoinDetailsData } from "@/type";
+import { CoinDetailsData, OHLCData } from "@/type";
 import Image from "next/image";
 import { CoinOverviewFallback } from "./fallback";
+import CandleStickChart from "../CandleStickChart";
 
 const CoinOverview = async () => {
-  let coin: CoinDetailsData;
+  let coin;
+  let ohlc;
   try {
-    coin = await fetcher<CoinDetailsData>("/coins/bitcoin", {
-      dex_pair_format: "symbol",
-    });
+    const [coinData, ohlcData] = await Promise.all([
+      await fetcher<CoinDetailsData>("/coins/bitcoin", {
+        dex_pair_format: "symbol",
+      }),
+      await fetcher<OHLCData[]>("/coins/bitcoin/ohlc", {
+        vs_currency: "usd",
+        days: 1,
+        interval: "hourly",
+        precision: "full",
+      }),
+    ]);
+    coin = coinData;
+    ohlc = ohlcData;
   } catch (error) {
     console.error(error);
     return <CoinOverviewFallback />;
   }
   return (
     <div id="coin-overview">
+      <CandleStickChart />
       <div className="header pt-2">
         <Image
           src={coin.image.large}
