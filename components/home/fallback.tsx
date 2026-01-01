@@ -34,7 +34,7 @@ export const TrendingCoinsFallback = () => {
     {
       header: "Name",
       cellClassName: "name-cell",
-      cell: () => (
+      cell: (): React.ReactNode => (
         <div className="name-link">
           <div className="name-image skeleton animate-pulse rounded-full" />
           <div className="name-line skeleton animate-pulse rounded" />
@@ -44,7 +44,7 @@ export const TrendingCoinsFallback = () => {
     {
       header: "24h Change",
       cellClassName: "name-cell",
-      cell: () => (
+      cell: (): React.ReactNode => (
         <div className="change-cell">
           <div className="price-change">
             <div className="change-icon skeleton animate-pulse rounded-full" />
@@ -56,7 +56,7 @@ export const TrendingCoinsFallback = () => {
     {
       header: "Price",
       cellClassName: "price-cell",
-      cell: () => (
+      cell: (): React.ReactNode => (
         <div className="price-line skeleton animate-pulse rounded">$0.00</div>
       ),
     },
